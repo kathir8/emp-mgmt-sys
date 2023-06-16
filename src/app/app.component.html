@@ -1,5 +1,6 @@
 <h5 class="text-center mt-4 mb-3">Employee Management System</h5>
 
+  <div *ngFor="let value of empObject$ | async">{{ value.name }}</div>
 <div class="mx-5">
 
   <form #empForm="ngForm" (ngSubmit)="formSubmit(empForm)">

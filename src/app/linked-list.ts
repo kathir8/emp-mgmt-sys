@@ -1,7 +1,8 @@
 
 // Node containing the data and reference to next node
-class Node {
-    data; next;
+export class Node {
+    private data: Node;
+    private next: Node | null;
     constructor(data:any, next?:any) {
         this.data = data
         this.next = next

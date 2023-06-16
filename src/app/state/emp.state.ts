@@ -1,12 +1,7 @@
-
 export const initialState = {
-    empData:[
-        {
-            'empId':100,
-            'name': 'Kathir',
-            'age': "25",
-            'position': 'fullstack',
-            'salary': "9"
-        }
-    ]
+    empData:{
+        head: null,
+        tail: null,
+        length: 0,
+    },
 } 

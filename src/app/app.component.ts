@@ -16,19 +16,17 @@ export class AppComponent {
   empList: any;
   empObject$!: Observable<any>
 
-  constructor(private store: Store<{ employee: any }>) {
-    this.empList = new LinkedList();
-  }
+  constructor(private store: Store<{ employee: any }>) {}
 
   formSubmit(myForm: NgForm): void {
     console.log(myForm.form.value);
     if (myForm.form.valid) {
-      const empObj = myForm.form.value
+      let empObj = myForm.form.value
       empObj['empId'] = ++this.empId
       this.store.dispatch(addEmp({ empObj }))
       this.empObject$ = this.store.select(getEmp)
       this.empObject$.subscribe(val => console.log(val))
-      
+      myForm.resetForm()
     }
   }
 
