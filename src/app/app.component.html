@@ -1,49 +1,58 @@
 <h5 class="text-center mt-4 mb-3">Employee Management System</h5>
 
-  <div *ngFor="let value of empObject$ | async">{{ value.name }}</div>
+<!-- <div *ngFor="let value of empObject$ | async">{{ value.name }}</div> -->
 <div class="mx-5">
 
   <form #empForm="ngForm" (ngSubmit)="formSubmit(empForm)">
     <div class="row mb-2">
-        <div class="col">
-          <label>Employee Name <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" ngModel name="name" required maxlength="30"
-            [ngClass]="{ 'is-invalid': empForm.submitted && empForm.controls['name'].invalid }">
-          <div *ngIf="empForm.submitted && empForm.controls['name'].invalid" class="text-danger">Employee Name is required.
-          </div>
+      <div class="col">
+        <label>Employee Name <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" ngModel name="name" required maxlength="30"
+          [ngClass]="{ 'is-invalid': empForm.submitted && empForm.controls['name'].invalid }">
+        <div *ngIf="empForm.submitted && empForm.controls['name'].invalid" class="text-danger">Employee Name is
+          required.
         </div>
-        <div class="col">
-          <label>Age <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" ngModel name="age" maxlength="3" required
-            (keypress)="numberOnly($event)"
-            [ngClass]="{ 'is-invalid': empForm.submitted && empForm.controls['age'].invalid }">
-          <div *ngIf="empForm.submitted && empForm.controls['age'].invalid" class="text-danger">Age is required.</div>
-        </div>
-        <div class="col">
-          <label>Position <span class="text-danger">*</span></label>
-          <select class="form-control" ngModel name="position" required
-            [ngClass]="{ 'is-invalid': empForm.submitted && empForm.controls['position'].invalid }">
-            <option>Frontend Developer</option>
-            <option>Backend Developer</option>
-            <option>Fullstack</option>
-            <option>Tech Lead</option>
-            <option>Architecture</option>
-          </select>
-          <div *ngIf="empForm.submitted && empForm.controls['position'].invalid" class="text-danger">Position is
-            required.</div>
-        </div>
+      </div>
+      <div class="col">
+        <label>Age <span class="text-danger">*</span></label>
+        <input type="text" class="form-control" ngModel name="age" maxlength="3" required
+          (keypress)="numberOnly($event)"
+          [ngClass]="{ 'is-invalid': empForm.submitted && empForm.controls['age'].invalid }">
+        <div *ngIf="empForm.submitted && empForm.controls['age'].invalid" class="text-danger">Age is required.</div>
+      </div>
+      <div class="col">
+        <label>Position <span class="text-danger">*</span></label>
+        <select class="form-control" ngModel name="position" required
+          [ngClass]="{ 'is-invalid': empForm.submitted && empForm.controls['position'].invalid }">
+          <option>Frontend Developer</option>
+          <option>Backend Developer</option>
+          <option>Fullstack</option>
+          <option>Tech Lead</option>
+          <option>Architecture</option>
+        </select>
+        <div *ngIf="empForm.submitted && empForm.controls['position'].invalid" class="text-danger">Position is
+          required.</div>
+      </div>
 
-        <div class="col">
-          <label>Salary <span class="text-danger">*</span><small>(in LPA)</small></label>
-          <input type="text" class="form-control" ngModel name="salary" maxlength="3" required (keypress)="numberOnly($event)"
-            [ngClass]="{ 'is-invalid': empForm.submitted && empForm.controls['salary'].invalid }">
-          <div *ngIf="empForm.submitted && empForm.controls['salary'].invalid" class="text-danger">Salary is required.</div>
+      <div class="col">
+        <label>Salary <span class="text-danger">*</span><small>(in LPA)</small></label>
+        <input type="text" class="form-control" ngModel name="salary" maxlength="3" required
+          (keypress)="numberOnly($event)"
+          [ngClass]="{ 'is-invalid': empForm.submitted && empForm.controls['salary'].invalid }">
+        <div *ngIf="empForm.submitted && empForm.controls['salary'].invalid" class="text-danger">Salary is required.
         </div>
-      
+      </div>
+
     </div>
-  
+
     <button class="btn btn-primary" type="submit">Submit</button>
     <div class="btn btn-danger ms-3" (click)="empForm.resetForm()">Close</div>
-  
+
   </form>
+
+
+  <ag-grid-angular class="ag-theme-alpine mt-3" domLayout='autoHeight' (gridReady)="onGridReady($event)"
+    [columnDefs]="columnDefs" [overlayNoRowsTemplate]="overlayNoRowsTemplate"
+    [overlayLoadingTemplate]="loadingTemplate">
+  </ag-grid-angular>
 </div>

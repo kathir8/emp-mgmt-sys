@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { empReducer } from './state/emp.reducer';
+import { AgGridModule } from 'ag-grid-angular';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { empReducer } from './state/emp.reducer';
     StoreModule.forRoot({
       employee: empReducer
     }),
+    AgGridModule
   ],
   providers: [],
   bootstrap: [AppComponent]
